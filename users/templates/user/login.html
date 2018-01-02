@@ -1,0 +1,13 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+    {% if form.errors %}
+        <p>用户名或密码错误！</p>
+    {% endif %}
+    <form method="POST" action="{% url 'users:login' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button name="submit">登录</button>
+    <input type="hidden" name="next" value="{% url 'blogs:index' %}"/>
+    </form>
+{% endblock content %}

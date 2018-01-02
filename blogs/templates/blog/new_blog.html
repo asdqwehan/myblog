@@ -1,0 +1,9 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+    <h4>发布新内容</h4>
+    <form action="{% url 'blogs:new_blog' %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button name="submit">发布</button>
+    </form>
+{% endblock content %}

@@ -1,0 +1,12 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+    <h2>标题</h2>
+    <ul>
+    {% for title in titles %}
+        <li><a href="{% url 'blogs:title' title.id %}">{{ title }}</a></li>
+    {% empty %}
+        <li>暂无标题</li>
+    {% endfor %}
+    </ul>
+    <a href="{% url 'blogs:new_blog' %}">发布新内容</a>
+{% endblock content %}

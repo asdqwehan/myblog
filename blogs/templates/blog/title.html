@@ -1,0 +1,11 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+    <h3>内容</h3>
+    <ul>
+
+            <p>{{ title.date_added }}</p>
+            <p>{{ title.content|linebreaks }}</p>
+
+    </ul>
+    <a href="{% url 'blogs:edit_blog' title.id %}">修改内容</a>
+{% endblock content %}
