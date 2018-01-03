@@ -1,9 +1,15 @@
 {% extends 'blog/base.html' %}
+{% load bootstrap3 %}
+{% block header %}
+    <h3>账号注册</h3>
+{% endblock header %}
 {% block content %}
-    <form action="{% url 'users:register' %}" method="POST">
+    <form action="{% url 'users:register' %}" method="POST" class="form">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button name="submit">注册</button>
+    {% bootstrap_form form %}
+        {% buttons %}
+    <button name="submit" class="btn btn-primary">注册</button>
+        {% endbuttons %}
     <input type="hidden" name="next" value="{% url 'blogs:index' %}"/>
     </form>
 {% endblock content %}
