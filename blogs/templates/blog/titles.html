@@ -1,12 +1,18 @@
 {% extends 'blog/base.html' %}
-{% block content %}
+{% load bootstrap3 %}
+{% block header %}
     <h2>标题</h2>
+{% endblock header %}
+
+{% block content %}
     <ul>
     {% for title in titles %}
-        <li><a href="{% url 'blogs:title' title.id %}">{{ title }}</a></li>
+        <li>
+        <a href="{% url 'blogs:title' title.id %}">{{ title }}</a>
+        </li>
     {% empty %}
-        <li>暂无标题</li>
+        <p>无任何内容...</p>
     {% endfor %}
     </ul>
-    <a href="{% url 'blogs:new_blog' %}">发布新内容</a>
+    <h4><a href="{% url 'blogs:new_blog' %}">添加新文章</a></h4>
 {% endblock content %}

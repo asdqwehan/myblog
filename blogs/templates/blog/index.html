@@ -1,4 +1,16 @@
 {% extends 'blog/base.html' %}
+{% load bootstrap3 %}
+
+{% block header %}
+    <div class="jumbotron">
+    <h1>博客主页</h1>
+    </div>
+{% endblock header %}
+
 {% block content %}
-    <h2>这是主页</h2>
+    <h2>
+    <a href="{% url 'users:register' %}">注册一个账号</a>来编写属于你自己的博客，
+    并且向别人展示你的兴趣。
+    </h2>
+
 {% endblock content %}

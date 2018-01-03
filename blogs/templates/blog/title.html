@@ -1,11 +1,20 @@
 {% extends 'blog/base.html' %}
+{% load bootstrap3 %}
+{% block header %}
+    <h2>{{ title }}</h2>
+{% endblock header %}
+
 {% block content %}
-    <h3>内容</h3>
-    <ul>
-
-            <p>{{ title.date_added }}</p>
-            <p>{{ title.content|linebreaks }}</p>
-
-    </ul>
-    <a href="{% url 'blogs:edit_blog' title.id %}">修改内容</a>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+        <h3>{{ title.add_time|date:'M d, Y H:i' }}
+        <small>
+            <a href="{% url 'blogs:edit_blog' title.id %}">修改文章</a>
+        </small>
+        </h3>
+        </div>
+        <div class="panel-body">
+        {{ title.content|linebreaks }}
+        </div>
+    </div>
 {% endblock content %}

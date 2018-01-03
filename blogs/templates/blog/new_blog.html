@@ -1,9 +1,17 @@
 {% extends 'blog/base.html' %}
+{% load bootstrap3 %}
+
+{% block header %}
+    <h2>发布新文章</h2>
+{% endblock header %}
+
 {% block content %}
-    <h4>发布新内容</h4>
-    <form action="{% url 'blogs:new_blog' %}" method="POST">
+    <form action="{% url 'blogs:new_blog' %}" method="POST" class="form">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button name="submit">发布</button>
+    {% bootstrap_form form %}
+
+    {% buttons %}
+        <button name="submit" class="btn btn-primary">新文章</button>
+    {% endbuttons %}
     </form>
 {% endblock content %}
