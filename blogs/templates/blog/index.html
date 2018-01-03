@@ -8,9 +8,13 @@
 {% endblock header %}
 
 {% block content %}
-    <h2>
+    {% if user.is_authenticated %}:
+    <h2><a href="{% url 'blogs:new_blog' %}">点此</a>开始编写你的博客</h2>
+    {% else %}
+        <h2>
     <a href="{% url 'users:register' %}">注册一个账号</a>来编写属于你自己的博客，
     并且向别人展示你的兴趣。
     </h2>
+    {% endif %}
 
 {% endblock content %}

@@ -1,0 +1,15 @@
+{% extends 'blog/base.html' %}
+{% load bootstrap3 %}
+{% block header %}
+    <h3>回复</h3>
+{% endblock header %}
+
+{% block content %}
+    <form action="{% url 'blogs:reply' blog.id %}" method="POST">
+    {% csrf_token %}
+    {% bootstrap_form replyform %}
+    {% buttons %}
+        <button name="submit" class="btn btn-primary">回复</button>
+    {% endbuttons %}
+    </form>
+{% endblock content %}

@@ -7,7 +7,7 @@
 {% block content %}
     <div class="panel panel-default">
         <div class="panel-heading">
-        <h3>{{ title.add_time|date:'M d, Y H:i' }}
+        <h3>{{ title.add_time|date:'Y-m-d H:i:s ' }}
         <small>
             <a href="{% url 'blogs:edit_blog' title.id %}">修改文章</a>
         </small>
@@ -15,6 +15,25 @@
         </div>
         <div class="panel-body">
         {{ title.content|linebreaks }}
+        </div>
+    </div>
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h4>评论
+            <small>
+                <a href="{% url 'blogs:reply' title.id %}">发表评论</a>
+            </small>
+            </h4>
+        </div>
+        <div class="panel-body">
+        {% for reply in replys %}
+                <ul>
+                <li>{{ reply.date_added|date:'Y-m-d-H:i:s' }}<br/>
+                    {{ reply.text }} </li>
+                </ul>
+            {% empty %}
+                <p>暂无评论</p>
+            {% endfor %}
         </div>
     </div>
 {% endblock content %}

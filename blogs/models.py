@@ -8,3 +8,10 @@ class MyBlog(models.Model):
     owner = models.ForeignKey(User)
     def __str__(self):
         return self.title
+
+class Reply(models.Model):
+    topic = models.ForeignKey(MyBlog)
+    text = models.TextField()
+    date_added = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.text

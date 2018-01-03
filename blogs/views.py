@@ -1,26 +1,30 @@
 from django.shortcuts import render
-from .models import MyBlog
+from .models import MyBlog, Reply
 from django.http import HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse
-from blogs.forms import MyBlogForm, PostForm
+from blogs.forms import MyBlogForm, PostForm, ReplyForm
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 def index(request):
     return render(request, 'blog/index.html')
 
 @login_required
-def titles(request):
+def titles(request ):
     #titles = MyBlog.objects.order_by('add_time')
     titles = MyBlog.objects.filter(owner=request.user).order_by('add_time')
+    #reply = Reply.objects.all()
+
     context = {'titles': titles}
     return render(request, 'blog/titles.html',context)
 
 @login_required
 def title(request, title_id):
     title = MyBlog.objects.get(id=title_id)
+    replys = title.reply_set.all()
     if title.owner != request.user:
         raise Http404
-    context = {'title': title}
+
+    context = {'title': title, 'replys':replys}
     return render(request, 'blog/title.html', context)
 
 @login_required
@@ -52,3 +56,19 @@ def edit_blog(request, title_id):
             return HttpResponseRedirect(reverse("blogs:title", args=[blog.id]))
     context = {'blog': blog, 'form': form, 'title': title}
     return render(request, 'blog/edit_blog.html', context)
+
+def reply(request, title_id):
+    blog = MyBlog.objects.get(id=title_id)
+    if request.method != 'POST':
+        replyform = ReplyForm()
+    else:
+        replyform = ReplyForm(data=request.POST)
+        if replyform.is_valid():
+            add_reply = replyform.save(commit=False)
+            add_reply.topic = blog
+            add_reply.save()
+            return HttpResponseRedirect(reverse('blogs:title', args=[blog.id]))
+    context = {'blog': blog, 'replyform': replyform}
+    return render(request, 'blog/reply.html', context)
+
+
