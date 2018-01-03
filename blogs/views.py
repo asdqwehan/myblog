@@ -6,7 +6,9 @@ from blogs.forms import MyBlogForm, PostForm, ReplyForm
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 def index(request):
-    return render(request, 'blog/index.html')
+    articles = MyBlog.objects.all().order_by('-add_time')[:4]
+    context = {'articles': articles}
+    return render(request, 'blog/index.html', context)
 
 @login_required
 def titles(request ):
@@ -21,8 +23,7 @@ def titles(request ):
 def title(request, title_id):
     title = MyBlog.objects.get(id=title_id)
     replys = title.reply_set.all()
-    if title.owner != request.user:
-        raise Http404
+
 
     context = {'title': title, 'replys':replys}
     return render(request, 'blog/title.html', context)

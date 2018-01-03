@@ -8,6 +8,10 @@
 {% endblock header %}
 
 {% block content %}
+    <style type="text/css">
+  .test_demo_clip{text-overflow:clip; overflow:hidden; white-space:nowrap; width:200px;}
+  .test_demo_ellipsis{text-overflow:ellipsis; overflow:hidden;  width:1000px;height:138px;}
+</style>
     {% if user.is_authenticated %}:
     <h2><a href="{% url 'blogs:new_blog' %}">点此</a>开始编写你的博客</h2>
     {% else %}
@@ -16,5 +20,19 @@
     并且向别人展示你的兴趣。
     </h2>
     {% endif %}
+        <div>
+        {% for article in articles %}
+            <div >
+                <div class="panel panel-success">
+                    <div class="panel-heading">{{ article.title }}</div>
+                        <div class="panel-body test_demo_ellipsis">
+                            <a href="{% url 'blogs:title' article.id %}">{{ article.content }}</a>
+                        </div>
+                    </div>
+                </div>
+        {% empty %}
+            无内容。
+        {% endfor %}
+</div>
 
 {% endblock content %}
