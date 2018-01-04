@@ -13,5 +13,6 @@ class Reply(models.Model):
     topic = models.ForeignKey(MyBlog)
     text = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
+    owner = models.ForeignKey(User)
     def __str__(self):
         return self.text

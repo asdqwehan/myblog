@@ -1,7 +1,8 @@
 {% extends 'blog/base.html' %}
 {% load bootstrap3 %}
 {% block header %}
-    <h2>{{ title }}</h2>
+    <h2>{{ title }}
+    <small>作者:{{ title.owner }}</small></h2>
 {% endblock header %}
 
 {% block content %}
@@ -28,7 +29,7 @@
         <div class="panel-body">
         {% for reply in replys %}
                 <ul>
-                <li>{{ reply.date_added|date:'Y-m-d-H:i:s' }}<br/>
+                <li>{{ reply.date_added|date:'Y-m-d-H:i:s' }} --  {{ reply.owner }}<br/>
                     {{ reply.text }} </li>
                 </ul>
             {% empty %}

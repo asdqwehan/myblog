@@ -67,6 +67,7 @@ def reply(request, title_id):
         if replyform.is_valid():
             add_reply = replyform.save(commit=False)
             add_reply.topic = blog
+            add_reply.owner = request.user
             add_reply.save()
             return HttpResponseRedirect(reverse('blogs:title', args=[blog.id]))
     context = {'blog': blog, 'replyform': replyform}
