@@ -1,0 +1,24 @@
+*** Starting uWSGI 2.0.17 (64bit) on [Wed Mar 14 19:33:17 2018] ***
+compiled with version: 5.4.0 20160609 on 14 March 2018 10:33:34
+os: Linux-4.4.0-91-generic #114-Ubuntu SMP Tue Aug 8 11:56:56 UTC 2017
+nodename: VM-0-3-ubuntu
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /home/ubuntu/myblog
+detected binary path: /usr/local/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+chdir() to path/to/yoursite
+chdir(): No such file or directory [core/uwsgi.c line 2629]
+*** Starting uWSGI 2.0.17 (64bit) on [Wed Mar 14 20:25:42 2018] ***
+compiled with version: 5.4.0 20160609 on 14 March 2018 10:33:34
+os: Linux-4.4.0-91-generic #114-Ubuntu SMP Tue Aug 8 11:56:56 UTC 2017
+nodename: VM-0-3-ubuntu
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /home/ubuntu/myblog
+detected binary path: /usr/local/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+chdir() to path/to/yoursite
+chdir(): No such file or directory [core/uwsgi.c line 2629]

@@ -7,6 +7,5 @@ urlpatterns = [
     url(r'^titles/(?P<title_id>\d+)/$', views.title, name='title'),
     url(r'^new_blog/$', views.new_blog, name='new_blog'),
     url(r'^titles/(?P<title_id>\d+)/edit_blog/$', views.edit_blog, name='edit_blog'),
-    #回复
     url(r'^titles/(?P<title_id>\d+)/reply/$', views.reply, name='reply'),
 ]
